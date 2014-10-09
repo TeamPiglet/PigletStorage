@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PigletStorage</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Add_photo">Add photo</string>
+    <string name="make_photo_label">Camera</string>
+    <string name="upload_photo_label">Upload</string>
+    <string name="product_name">Product name</string>
+    <string name="product_type">Product type</string>
+    <string name="title_activity_add_item">AddItemActivity</string>
+
+</resources>
