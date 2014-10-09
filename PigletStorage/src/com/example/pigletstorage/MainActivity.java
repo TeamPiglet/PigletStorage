@@ -1,17 +1,11 @@
 package com.example.pigletstorage;
 
 import android.support.v7.app.ActionBarActivity;
-<<<<<<< HEAD
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-=======
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
->>>>>>> d3736178ad8c0a05e48bb343727d92100ef66d4f
 
 public class MainActivity extends ActionBarActivity {
 
@@ -20,15 +14,12 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
-<<<<<<< HEAD
 	
 	public void addProduct(View button){
 		Intent launchFormActivity = new Intent(this, AddItemActivity.class); 
         startActivity(launchFormActivity);
 	}
 	
-=======
->>>>>>> d3736178ad8c0a05e48bb343727d92100ef66d4f
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

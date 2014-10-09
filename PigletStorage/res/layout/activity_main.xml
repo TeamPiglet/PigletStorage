@@ -24,10 +24,7 @@
         android:layout_alignRight="@+id/imageView1"
         android:layout_below="@+id/imageView1"
         android:layout_marginTop="36dp"
-<<<<<<< HEAD
         android:onClick="addProduct"
-=======
->>>>>>> d3736178ad8c0a05e48bb343727d92100ef66d4f
         android:text="Add Product" />
 
     <Button
