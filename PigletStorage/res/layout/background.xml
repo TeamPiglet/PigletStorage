@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 <item>
@@ -9,4 +10,17 @@
             android:type="linear" />
     </shape>
 </item>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <shape>
+        <gradient
+            android:angle="90"
+            android:startColor="#f0000000"
+            android:endColor="#ff444444"
+            android:type="linear" />
+    </shape>
+</item>
+>>>>>>> d3736178ad8c0a05e48bb343727d92100ef66d4f
 </selector>
