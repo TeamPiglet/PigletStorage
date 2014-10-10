@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/upload_photo"
                 android:layout_toStartOf="@+id/make_photo"
-                android:onClick="doLaunchContactPicker"
+                android:onClick="getCameraPhoto"
                 android:text="@string/make_photo_label" >
             </Button>
 
@@ -34,31 +34,90 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:onClick="doLaunchContactPicker"
+                android:onClick="uploadPhoto"
                 android:text="@string/upload_photo_label" >
             </Button>
         </RelativeLayout>
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_name"></TextView>
+            android:text="@string/product_name" >
+        </TextView>
+
         <EditText
-            android:layout_height="wrap_content"
+            android:id="@+id/product_name_preview"
             android:layout_width="match_parent"
-            android:hint="@string/product_name"
-            android:id="@+id/product_name_preview"></EditText>
-        
+            android:layout_height="wrap_content"
+            android:hint="@string/product_name" >
+        </EditText>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_type"></TextView>
+            android:text="@string/product_type" >
+        </TextView>
+
         <EditText
-            android:layout_height="wrap_content"
+            android:id="@+id/product_type_preview"
             android:layout_width="match_parent"
-            android:hint="@string/product_type"
-            android:id="@+id/product_type_preview"></EditText>
+            android:layout_height="wrap_content"
+            android:hint="@string/product_type" >
+        </EditText>
         
+         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/product_price" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/product_price_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product_price" >
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quantity" >
+        </TextView>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        <SeekBar
+            android:id="@+id/slider"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/product_quantity_current"
+            android:layout_toStartOf="@+id/slider" />
+
+        <TextView
+            android:id="@+id/product_quantity_current"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:paddingStart="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingEnd="5dp"
+            android:layout_alignParentRight="true"            
+            android:layout_alignParentEnd="true"
+            android:text="@string/product_quantity_initial"
+            android:textSize="20sp" />
+        
+        </RelativeLayout>
+
+       <Button
+                android:id="@+id/get_location"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="getLocation"
+                android:text="@string/get_location_label" >
+            </Button>
     </LinearLayout>
 
 </ScrollView>
