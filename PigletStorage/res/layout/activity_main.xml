@@ -25,6 +25,7 @@
         android:layout_below="@+id/imageView1"
         android:layout_marginTop="36dp"
         android:onClick="addProduct"
+    	android:textColor="@color/white"
         android:text="Add Product" />
 
     <Button
@@ -35,6 +36,7 @@
         android:layout_alignBottom="@+id/button2"
         android:layout_alignLeft="@+id/imageView1"
         android:onClick="listProducts"
+    	android:textColor="@color/white"
         android:text="View Products" />
 
     <Button
