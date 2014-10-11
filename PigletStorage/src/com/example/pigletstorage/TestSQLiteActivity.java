@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.Random;
 
 import android.app.ListActivity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.SQLite.*;
 import com.example.SQLite.models.*;
@@ -15,7 +20,11 @@ import com.example.SQLite.models.*;
 
 public class TestSQLiteActivity extends ListActivity {
 	  private ProductDataSource datasource;
+	  private Bitmap imageBitmap;
+	  private ImageView imageview;
 
+		private Context context = this;
+		
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
@@ -23,20 +32,24 @@ public class TestSQLiteActivity extends ListActivity {
 
 	    datasource = new ProductDataSource(this);
 	    datasource.open();
-
 	    List<Product> values = datasource.getAllProducts();
 
-	    // use the SimpleCursorAdapter to show the
-	    // elements in a ListView
+	    /*--------------Display image------------------*/
+	    imageview  = (ImageView) findViewById(R.id.image);	    
+	    byte[] imgInArr = values.get(1).getImage();
+	    imageBitmap = BitmapFactory.decodeByteArray(imgInArr, 0, imgInArr.length);	     
+        imageview.setImageBitmap(imageBitmap);
+	    /*---------------------------------------------*/
+
 	    ArrayAdapter<Product> adapter = new ArrayAdapter<Product>(this,
 	        android.R.layout.simple_list_item_1, values);
 	    setListAdapter(adapter);
 	  }
 
-	  // Will be called via the onClick attribute
-	  // of the buttons in main.xml
 	  public void onClick(View view) {
-	    @SuppressWarnings("unchecked")
+		  Toast toast = Toast.makeText(context, "Ve4e ne raboti", Toast.LENGTH_SHORT);
+			toast.show();
+	    /*@SuppressWarnings("unchecked")
 	    ArrayAdapter<Product> adapter = (ArrayAdapter<Product>) getListAdapter();
 	    Product product = null;
 	    switch (view.getId()) {
@@ -46,7 +59,7 @@ public class TestSQLiteActivity extends ListActivity {
 	      adapter.add(product);
 	      break;
 	    }
-	    adapter.notifyDataSetChanged();
+	    adapter.notifyDataSetChanged();*/
 	  }
 
 	  @Override

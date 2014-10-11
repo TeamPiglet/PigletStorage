@@ -6,6 +6,7 @@ public class Product {
 	private String type;
 	private String price;
 	private String quantity;
+	private byte[] image;
 
 	public long getId() {
 		return id;
@@ -47,12 +48,20 @@ public class Product {
 		this.price = price;
 	}	
 	
-	// Will be used by the ArrayAdapter in the ListView
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}	
+	
 	@Override
 	public String toString() {
 		return "Name: " + name 
 				+ "\n  Price: "+ price 
 				+ "\n  Type: " + type 
-				+ "\n  Quantity " + quantity;
+				+ "\n  Quantity " + quantity
+				+ "ID: " + id;
 	}
 }

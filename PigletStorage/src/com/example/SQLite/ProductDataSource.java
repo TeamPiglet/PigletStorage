@@ -11,12 +11,12 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.SQLite.models.*;
 
 public class ProductDataSource {
-	// Database fields
 	private SQLiteDatabase database;
 	private SQLiteHelper dbHelper;
 	private String[] allColumns = { SQLiteHelper.COLUMN_ID,
 			SQLiteHelper.COLUMN_NAME, SQLiteHelper.COLUMN_PRICE,
-			SQLiteHelper.COLUMN_TYPE, SQLiteHelper.COLUMN_QUANTITY, };
+			SQLiteHelper.COLUMN_TYPE, SQLiteHelper.COLUMN_QUANTITY, 
+			SQLiteHelper.COLUMN_IMAGE };
 
 	public ProductDataSource(Context context) {
 		dbHelper = new SQLiteHelper(context);
@@ -30,25 +30,25 @@ public class ProductDataSource {
 		dbHelper.close();
 	}
 
-	public Product createProduct(String name, String price, String type,
-			String quantity) {
+	public void createProduct(String name, String price, String type,
+			String quantity, byte[] image) {
 		ContentValues values = new ContentValues();
 		values.put(SQLiteHelper.COLUMN_NAME, name);
 		values.put(SQLiteHelper.COLUMN_PRICE, price);
 		values.put(SQLiteHelper.COLUMN_TYPE, type);
 		values.put(SQLiteHelper.COLUMN_QUANTITY, quantity);
+		values.put(SQLiteHelper.COLUMN_IMAGE, image);
 
-		long insertId = database.insert(SQLiteHelper.TABLE_PRODUCTS, null,
+		database.insert(SQLiteHelper.TABLE_PRODUCTS, null,
 				values);
-
-		Cursor cursor = database.query(SQLiteHelper.TABLE_PRODUCTS, allColumns,
+		
+		/*Cursor cursor = database.query(SQLiteHelper.TABLE_PRODUCTS, allColumns,
 				SQLiteHelper.COLUMN_ID + " = " + insertId, null, null, null,
-				null);
-
-		cursor.moveToFirst();
-		Product newProduct = cursorToComment(cursor);
+				null);*/		
+		/*cursor.moveToFirst();
+		Product newProduct = cursorToProduct(cursor);
 		cursor.close();
-		return newProduct;
+		return newProduct;*/
 	}
 
 	public void deleteProduct(Product product) {
@@ -66,7 +66,7 @@ public class ProductDataSource {
 
 		cursor.moveToFirst();
 		while (!cursor.isAfterLast()) {
-			Product product = cursorToComment(cursor);
+			Product product = cursorToProduct(cursor);
 			products.add(product);
 			cursor.moveToNext();
 		}
@@ -75,13 +75,14 @@ public class ProductDataSource {
 		return products;
 	}
 
-	private Product cursorToComment(Cursor cursor) {
+	private Product cursorToProduct(Cursor cursor) {
 		Product product = new Product();
 		product.setId(cursor.getLong(0));
 		product.setName(cursor.getString(1));
 		product.setPrice(cursor.getString(2));
 		product.setType(cursor.getString(3));
 		product.setQuantity(cursor.getString(4));
+		product.setImage(cursor.getBlob(5));
 
 		return product;
 	}
