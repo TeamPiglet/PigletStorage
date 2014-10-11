@@ -25,7 +25,10 @@ public class MainActivity extends ActionBarActivity {
         startActivity(launchFormActivity);
 	}
 	
-
+	public void testSQLite(View button){
+		Intent launchFormActivity = new Intent(this, TestSQLiteActivity.class); 
+        startActivity(launchFormActivity);
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

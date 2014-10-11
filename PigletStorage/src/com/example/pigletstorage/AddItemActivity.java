@@ -1,11 +1,14 @@
 package com.example.pigletstorage;
 
+import com.example.SQLite.ProductDataSource;
+
 import android.support.v7.app.ActionBarActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -40,6 +43,22 @@ public class AddItemActivity extends ActionBarActivity implements OnSeekBarChang
 		toast.show();
 	}
 	
+	public void saveProduct(View v) {
+		String name = ((EditText)findViewById(R.id.product_name_preview)).getText().toString();
+		String type = ((EditText)findViewById(R.id.product_type_preview)).getText().toString();
+		String price = ((EditText)findViewById(R.id.product_price_preview)).getText().toString();
+		String quantity = ((TextView)findViewById(R.id.product_quantity_current)).getText().toString();
+		String width = "";
+		String height = "";
+		
+		ProductDataSource datasource = new ProductDataSource(this);
+	    datasource.open();
+		datasource.createProduct(name, price, type, quantity);
+	      
+		
+		Toast toast = Toast.makeText(context, "Succesfully saved.", Toast.LENGTH_SHORT);
+		toast.show();     
+	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.add_item, menu);

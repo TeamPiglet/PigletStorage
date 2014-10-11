@@ -30,6 +30,10 @@
             android:name=".List"
             android:label="@string/title_activity_list" >
         </activity>
+        <activity
+            android:name=".TestSQLiteActivity"
+            android:label="@string/title_activity_test_sqlite" >
+        </activity>
     </application>
 
 </manifest>

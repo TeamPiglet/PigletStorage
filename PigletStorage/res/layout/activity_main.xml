@@ -37,4 +37,11 @@
         android:onClick="listProducts"
         android:text="View Products" />
 
+    <Button
+        android:id="@+id/test_sqlite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="testSQLite"
+        android:text="Test SQLite" />
+    
 </RelativeLayout>

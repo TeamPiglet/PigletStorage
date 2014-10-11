@@ -15,5 +15,7 @@
     <string name="product_quantity_initial">1</string>
     <string name="get_location_label">Get location</string>
     <string name="title_activity_list">List</string>
+    <string name="save_product_label">Save product</string>
+    <string name="title_activity_test_sqlite">TestSQLiteActivity</string>
 
 </resources>

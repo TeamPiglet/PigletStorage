@@ -118,6 +118,15 @@
                 android:onClick="getLocation"
                 android:text="@string/get_location_label" >
             </Button>
+
+       <Button
+           android:id="@+id/save_product"
+           android:layout_width="200dp"
+           android:layout_gravity="center_vertical|center_horizontal"
+           android:layout_height="fill_parent"
+           android:onClick="saveProduct"
+           android:text="@string/save_product_label" />
+
     </LinearLayout>
 
 </ScrollView>
