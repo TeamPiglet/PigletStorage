@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	public void listProducts(View button){
-		Intent launchFormActivity = new Intent(this, List.class); 
+		Intent launchFormActivity = new Intent(this, ListOfProducts.class); 
         startActivity(launchFormActivity);
 	}
 	

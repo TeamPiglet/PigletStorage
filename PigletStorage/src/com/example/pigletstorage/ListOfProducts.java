@@ -1,6 +1,10 @@
 package com.example.pigletstorage;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.example.SQLite.ProductDataSource;
+import com.example.SQLite.models.Product;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.res.Resources;
@@ -10,12 +14,13 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class List extends ActionBarActivity {
+public class ListOfProducts extends ActionBarActivity {
 
 	ListView list;
     CustomAdapter adapter;
-    public  List CustomListView = null;
-    public  ArrayList<ListModel> CustomListViewValuesArr = new ArrayList<ListModel>();
+    public  ListOfProducts CustomListView = null;
+	private ProductDataSource datasource;
+	public List<Product> values;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,47 +28,32 @@ public class List extends ActionBarActivity {
 		setContentView(R.layout.activity_list);
 	
 		  CustomListView = this;
+		  datasource = new ProductDataSource(CustomListView);
+		  datasource.open();
 		  
-		  /******** Take some data in Arraylist ( CustomListViewValuesArr ) ***********/
-		  setListData();
-		   
+		  values = datasource.getAllProducts();
+		  	   
 		  Resources res = getResources();
-		  list= ( ListView )findViewById( R.id.listView1 );  // List defined in XML ( See Below )
+		  list = ( ListView )findViewById( R.id.listView1 );  // List defined in XML ( See Below )
 		   
 		  /**************** Create Custom Adapter *********/
-		  adapter=new CustomAdapter( CustomListView, CustomListViewValuesArr,res );
+		  adapter=new CustomAdapter( CustomListView, values,res );
 		  list.setAdapter( adapter );
 	
 	}
 
 	  /****** Function to set data in ArrayList *************/
-    public void setListData()
-    {
-         
-        for (int i = 0; i < 11; i++) {
-             
-            final ListModel sched = new ListModel();
-                 
-              /******* Firstly take data in model object ******/
-               sched.setCompanyName("Company "+i);
-               sched.setImage("ic_launcher");
-               sched.setUrl("http:\\www."+i+".com");
-                
-            /******** Take Model Object in ArrayList **********/
-            CustomListViewValuesArr.add( sched );
-        }
-         
-    }	
+ 
 	
     public void onItemClick(int mPosition){
-        ListModel tempValues = ( ListModel ) CustomListViewValuesArr.get(mPosition);
+        Product tempValues = ( Product ) values.get(mPosition);
 
        // SHOW ALERT          
 
         Toast.makeText(CustomListView,
-                ""+tempValues.getCompanyName()
-                  + "Image:"+tempValues.getImage()
-              	  +" Url:"+tempValues.getUrl(),
+                	"Name: " + tempValues.getName()
+                  + "\r\nPrice: " + tempValues.getPrice()
+              	  +"\r\nType: " + tempValues.getType(),
 					                Toast.LENGTH_LONG)
         .show();
     }

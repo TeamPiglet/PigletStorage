@@ -1,6 +1,9 @@
 package com.example.pigletstorage;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import com.example.SQLite.models.Product;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,14 +22,14 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
           
          /*********** Declare Used Variables *********/
          private Activity activity;
-         private ArrayList data;
+         private List data;
          private static LayoutInflater inflater=null;
          public Resources res;
-         ListModel tempValues=null;
+         Product tempValues=null;
          int i=0;
           
          /*************  CustomAdapter Constructor *****************/
-         public CustomAdapter(Activity a, ArrayList d,Resources resLocal) {
+         public CustomAdapter(Activity a, List d,Resources resLocal) {
               
                 /********** Take passed values **********/
                  activity = a;
@@ -34,7 +37,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
                  res = resLocal;
               
                  /***********  Layout inflator to call external xml layout () ***********/
-                  inflater = ( LayoutInflater )activity.
+                 inflater = ( LayoutInflater )activity.
                                               getSystemService(Context.LAYOUT_INFLATER_SERVICE);
               
          }
@@ -98,15 +101,15 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
              {
                  /***** Get each Model object from Arraylist ********/
                  tempValues=null;
-                 tempValues = ( ListModel ) data.get( position );
+                 tempValues = ( Product ) data.get( position );
                   
                  /************  Set Model values in Holder elements ***********/
  
-                  holder.text.setText( tempValues.getCompanyName() );
-                  holder.text1.setText( tempValues.getUrl() );
-                   holder.image.setImageResource(
+                  holder.text.setText( tempValues.getName() );
+                  holder.text1.setText("Price: " + tempValues.getPrice() );
+                  holder.image.setImageResource(
                                res.getIdentifier(
-                               "com.example.pigletstorage:drawable/"+tempValues.getImage()
+                               "com.example.pigletstorage:drawable/ic_launcher"
                                ,null,null));
                    
                   /******** Set Item Click Listner for LayoutInflater for each row *******/
@@ -133,7 +136,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
              public void onClick(View arg0) {
  
         
-               List sct = (List)activity;
+               ListOfProducts sct = (ListOfProducts)activity;
  
               /****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
  
