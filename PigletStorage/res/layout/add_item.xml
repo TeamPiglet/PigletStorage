@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@layout/background">
 	
     <LinearLayout
         android:id="@+id/LinearLayout01"
@@ -12,7 +13,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Add_photo" />
+            android:text="@string/Add_photo"
+    		android:textColor="@color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,7 +27,8 @@
                 android:layout_toLeftOf="@+id/upload_photo"
                 android:layout_toStartOf="@+id/make_photo"
                 android:onClick="getCameraPhoto"
-                android:text="@string/make_photo_label" >
+                android:text="@string/make_photo_label"
+    			android:textColor="@color/white" >
             </Button>
 
             <Button
@@ -35,53 +38,61 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:onClick="uploadPhoto"
-                android:text="@string/upload_photo_label" >
+                android:text="@string/upload_photo_label"
+    			android:textColor="@color/white" >
             </Button>
         </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_name" >
+            android:text="@string/product_name" 
+    		android:textColor="@color/white">
         </TextView>
 
         <EditText
             android:id="@+id/product_name_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/product_name" >
+            android:hint="@string/product_name" 
+    		android:textColor="@color/white">
         </EditText>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_type" >
+            android:text="@string/product_type"
+    		android:textColor="@color/white" >
         </TextView>
 
         <EditText
             android:id="@+id/product_type_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/product_type" >
+            android:hint="@string/product_type" 
+    		android:textColor="@color/white">
         </EditText>
         
          <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/product_price" >
+            android:text="@string/product_price"
+    		android:textColor="@color/white" >
         </TextView>
 
         <EditText
             android:id="@+id/product_price_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/product_price" >
+            android:hint="@string/product_price"
+    		android:textColor="@color/white" >
         </EditText>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/quantity" >
+            android:text="@string/quantity"
+    		android:textColor="@color/white" >
         </TextView>
         
         <RelativeLayout
@@ -116,7 +127,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:onClick="getLocation"
-                android:text="@string/get_location_label" >
+                android:text="@string/get_location_label" 
+    	android:textColor="@color/white">
             </Button>
 
        <Button
@@ -125,7 +137,8 @@
            android:layout_gravity="center_vertical|center_horizontal"
            android:layout_height="fill_parent"
            android:onClick="saveProduct"
-           android:text="@string/save_product_label" />
+           android:text="@string/save_product_label"
+    	android:textColor="@color/white" />
 
     </LinearLayout>
 
