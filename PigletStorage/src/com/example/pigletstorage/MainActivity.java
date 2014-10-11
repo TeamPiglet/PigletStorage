@@ -20,6 +20,11 @@ public class MainActivity extends ActionBarActivity {
         startActivity(launchFormActivity);
 	}
 	
+	public void listProducts(View button){
+		Intent launchFormActivity = new Intent(this, List.class); 
+        startActivity(launchFormActivity);
+	}
+	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

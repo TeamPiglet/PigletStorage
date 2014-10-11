@@ -13,8 +13,7 @@
     <string name="quantity">Quantity</string>
     <string name="product_price">Product price</string>
     <string name="product_quantity_initial">1</string>
-    
-    
     <string name="get_location_label">Get location</string>
+    <string name="title_activity_list">List</string>
 
 </resources>
