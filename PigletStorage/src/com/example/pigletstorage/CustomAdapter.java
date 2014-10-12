@@ -8,6 +8,8 @@ import com.example.SQLite.models.Product;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,14 +105,13 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
                  tempValues=null;
                  tempValues = ( Product ) data.get( position );
                   
+                 byte[] bitmapdata = tempValues.getImage();
+                 
                  /************  Set Model values in Holder elements ***********/
- 
+                 Bitmap imageBitmap = BitmapFactory.decodeByteArray(bitmapdata , 0, bitmapdata .length);
                   holder.text.setText( tempValues.getName() );
                   holder.text1.setText("Price: " + tempValues.getPrice() );
-                  holder.image.setImageResource(
-                               res.getIdentifier(
-                               "com.example.pigletstorage:drawable/ic_launcher"
-                               ,null,null));
+                  holder.image.setImageBitmap(imageBitmap);
                    
                   /******** Set Item Click Listner for LayoutInflater for each row *******/
  
@@ -138,7 +139,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
         
                ListOfProducts sct = (ListOfProducts)activity;
  
-              /****  Call  onItemClick Method inside CustomListViewAndroidExample Class ( See Below )****/
+              /****  Call  onItemClick Method inside ListOfProducts Class ( See Below )****/
  
                  sct.onItemClick(mPosition);
              }               
