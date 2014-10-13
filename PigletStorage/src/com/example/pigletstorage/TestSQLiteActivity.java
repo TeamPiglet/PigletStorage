@@ -36,7 +36,7 @@ public class TestSQLiteActivity extends ListActivity {
 
 	    /*--------------Display image------------------*/
 	    imageview  = (ImageView) findViewById(R.id.image);	    
-	    byte[] imgInArr = values.get(1).getImage();
+	    byte[] imgInArr = values.get(0).getImage();
 	    imageBitmap = BitmapFactory.decodeByteArray(imgInArr, 0, imgInArr.length);	     
         imageview.setImageBitmap(imageBitmap);
 	    /*---------------------------------------------*/

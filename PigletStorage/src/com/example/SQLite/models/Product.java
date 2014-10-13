@@ -7,6 +7,8 @@ public class Product {
 	private String price;
 	private String quantity;
 	private byte[] image;
+	private String longitude;
+	private String latitude;
 
 	public long getId() {
 		return id;
@@ -56,12 +58,30 @@ public class Product {
 		this.image = image;
 	}	
 	
+	public String getLogitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	
 	@Override
 	public String toString() {
 		return "Name: " + name 
 				+ "\n  Price: "+ price 
 				+ "\n  Type: " + type 
 				+ "\n  Quantity " + quantity
-				+ "ID: " + id;
+				+ "\n  ID: " + id
+				+ "\n  Longitude: " + longitude
+				+ "\n  Latitude: " + latitude;
 	}
 }

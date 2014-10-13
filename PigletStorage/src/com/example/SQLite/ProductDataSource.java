@@ -16,7 +16,8 @@ public class ProductDataSource {
 	private String[] allColumns = { SQLiteHelper.COLUMN_ID,
 			SQLiteHelper.COLUMN_NAME, SQLiteHelper.COLUMN_PRICE,
 			SQLiteHelper.COLUMN_TYPE, SQLiteHelper.COLUMN_QUANTITY, 
-			SQLiteHelper.COLUMN_IMAGE };
+			SQLiteHelper.COLUMN_IMAGE, SQLiteHelper.COLUMN_LONGITUDE,
+			SQLiteHelper.COLUMN_LATITUDE};
 
 	public ProductDataSource(Context context) {
 		dbHelper = new SQLiteHelper(context);
@@ -31,13 +32,15 @@ public class ProductDataSource {
 	}
 
 	public void createProduct(String name, String price, String type,
-			String quantity, byte[] image) {
+			String quantity, byte[] image, String longitude, String latitude) {
 		ContentValues values = new ContentValues();
 		values.put(SQLiteHelper.COLUMN_NAME, name);
 		values.put(SQLiteHelper.COLUMN_PRICE, price);
 		values.put(SQLiteHelper.COLUMN_TYPE, type);
 		values.put(SQLiteHelper.COLUMN_QUANTITY, quantity);
 		values.put(SQLiteHelper.COLUMN_IMAGE, image);
+		values.put(SQLiteHelper.COLUMN_LONGITUDE, longitude);
+		values.put(SQLiteHelper.COLUMN_LATITUDE, latitude);
 
 		database.insert(SQLiteHelper.TABLE_PRODUCTS, null,
 				values);
@@ -83,6 +86,8 @@ public class ProductDataSource {
 		product.setType(cursor.getString(3));
 		product.setQuantity(cursor.getString(4));
 		product.setImage(cursor.getBlob(5));
+		product.setLongitude(cursor.getString(6));
+		product.setLatitude(cursor.getString(7));
 
 		return product;
 	}
