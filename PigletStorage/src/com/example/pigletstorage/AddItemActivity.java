@@ -23,8 +23,6 @@ import android.widget.Toast;
 
 import com.example.SQLite.SQLiteDataSource;
 import com.example.TelerikBackend.TelerikDataSource;
-import com.example.models.Product;
-import com.telerik.everlive.sdk.core.EverliveApp;
 
 public class AddItemActivity extends ActionBarActivity implements
 		OnSeekBarChangeListener {
@@ -35,10 +33,9 @@ public class AddItemActivity extends ActionBarActivity implements
 
 	private ImageView imageview;
 	private Bitmap imageBitmap;
+	private Notifications notifications;
 
 	private Context context = this;
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +57,7 @@ public class AddItemActivity extends ActionBarActivity implements
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
 				0, li);
 		
+		notifications = new Notifications();
 	}
 
 	public void getCameraPhoto(View v) {
@@ -108,6 +106,9 @@ public class AddItemActivity extends ActionBarActivity implements
 			printMessage("Error while saving in Telerik Backend Services!");
 			return;
 		}
+		
+		//notifications.createAddedNewItemNotification(this, imageBitmap);
+		notifications.createAddedNewItemNotification(this, imageBitmap, name, price, type, quantity);
 		
 		printMessage("Succesfully saved.");
 	}
