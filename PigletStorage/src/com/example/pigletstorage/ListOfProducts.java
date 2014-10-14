@@ -6,6 +6,7 @@ import com.example.SQLite.SQLiteDataSource;
 import com.example.models.Product;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.Menu;
@@ -47,14 +48,18 @@ public class ListOfProducts extends ActionBarActivity {
     public void onItemClick(int mPosition){
         Product tempValues = ( Product ) values.get(mPosition);
 
+        
+        Intent intent = new Intent(getBaseContext(), ProductDetailsActivity.class);
+        intent.putExtra("product", tempValues);
+        startActivity(intent);
        // SHOW ALERT          
 
-        Toast.makeText(CustomListView,
-                	"Name: " + tempValues.getName()
-                  + "\r\nPrice: " + tempValues.getPrice()
-              	  +"\r\nType: " + tempValues.getType(),
-					                Toast.LENGTH_LONG)
-        .show();
+//        Toast.makeText(CustomListView,
+//                	"Name: " + tempValues.getName()
+//                  + "\r\nPrice: " + tempValues.getPrice()
+//              	  +"\r\nType: " + tempValues.getType(),
+//					                Toast.LENGTH_LONG)
+//        .show();
     }
     
 	@Override
