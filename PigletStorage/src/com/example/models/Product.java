@@ -3,27 +3,28 @@ package com.example.models;
 import java.util.UUID;
 
 import com.telerik.everlive.sdk.core.model.base.DataItem;
+import com.telerik.everlive.sdk.core.serialization.ServerIgnore;
 import com.telerik.everlive.sdk.core.serialization.ServerProperty;
 import com.telerik.everlive.sdk.core.serialization.ServerType;
 
 @ServerType("Product")
 public class Product extends DataItem {
 	private UUID idTBS;
-	private long idSQLite;
-	
-	@ServerProperty("name")
+	@ServerIgnore
+	private long idSQLite;	
+	@ServerProperty("Name")
 	private String name;
-	@ServerProperty("type")
+	@ServerProperty("Type")
 	private String type;
-	@ServerProperty("price")
+	@ServerProperty("Price")
 	private String price;
-	@ServerProperty("quantity")
+	@ServerProperty("Quantity")
 	private String quantity;
-	@ServerProperty("image")
+	@ServerProperty("Image")
 	private byte[] image;
-	@ServerProperty("longitude")
+	@ServerProperty("Longitude")
 	private String longitude;
-	@ServerProperty("latitude")
+	@ServerProperty("Latitude")
 	private String latitude;
 
 	public long getIdSQLite() {
