@@ -2,7 +2,6 @@ package com.example.pigletstorage;
 
 
 import java.util.List;
-import java.util.Random;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -15,11 +14,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.SQLite.*;
-import com.example.SQLite.models.*;
+import com.example.models.*;
 
 
 public class TestSQLiteActivity extends ListActivity {
-	  private ProductDataSource datasource;
+	  private SQLiteDataSource datasource;
 	  private Bitmap imageBitmap;
 	  private ImageView imageview;
 
@@ -30,7 +29,7 @@ public class TestSQLiteActivity extends ListActivity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_test_sqlite);
 
-	    datasource = new ProductDataSource(this);
+	    datasource = new SQLiteDataSource(this);
 	    datasource.open();
 	    List<Product> values = datasource.getAllProducts();
 

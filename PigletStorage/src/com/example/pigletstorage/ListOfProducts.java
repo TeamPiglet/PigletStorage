@@ -1,10 +1,9 @@
 package com.example.pigletstorage;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.example.SQLite.ProductDataSource;
-import com.example.SQLite.models.Product;
+import com.example.SQLite.SQLiteDataSource;
+import com.example.models.Product;
 
 import android.support.v7.app.ActionBarActivity;
 import android.content.res.Resources;
@@ -19,7 +18,7 @@ public class ListOfProducts extends ActionBarActivity {
 	ListView list;
     CustomAdapter adapter;
     public  ListOfProducts CustomListView = null;
-	private ProductDataSource datasource;
+	private SQLiteDataSource datasource;
 	public List<Product> values;
 	
 	@Override
@@ -28,7 +27,7 @@ public class ListOfProducts extends ActionBarActivity {
 		setContentView(R.layout.activity_list);
 	
 		  CustomListView = this;
-		  datasource = new ProductDataSource(CustomListView);
+		  datasource = new SQLiteDataSource(CustomListView);
 		  datasource.open();
 		  
 		  values = datasource.getAllProducts();

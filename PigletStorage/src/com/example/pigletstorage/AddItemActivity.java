@@ -21,7 +21,10 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.SQLite.ProductDataSource;
+import com.example.SQLite.SQLiteDataSource;
+import com.example.TelerikBackend.TelerikDataSource;
+import com.example.models.Product;
+import com.telerik.everlive.sdk.core.EverliveApp;
 
 public class AddItemActivity extends ActionBarActivity implements
 		OnSeekBarChangeListener {
@@ -34,6 +37,8 @@ public class AddItemActivity extends ActionBarActivity implements
 	private Bitmap imageBitmap;
 
 	private Context context = this;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +59,7 @@ public class AddItemActivity extends ActionBarActivity implements
 
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
 				0, li);
+		
 	}
 
 	public void getCameraPhoto(View v) {
@@ -77,55 +83,87 @@ public class AddItemActivity extends ActionBarActivity implements
 		printMessage("Succesfully retrieved location");
 	}
 
-	public void saveProduct(View v) {
-		if (imageBitmap == null) {
-			printMessage("You must add a photo");
-			return;
-		}
-
+	public void saveProduct(View v) {	
 		String name = ((EditText) findViewById(R.id.product_name_preview))
 				.getText().toString();
-
-		if (name.equals("")) {
-			printMessage("You must add a name");
-			return;
-		}
-
 		String type = ((EditText) findViewById(R.id.product_type_preview))
 				.getText().toString();
-
-		if (type.equals("")) {
-			printMessage("You must add a type");
+		String price = ((EditText) findViewById(R.id.product_price_preview))
+				.getText().toString();
+		String quantity = ((TextView) findViewById(R.id.product_quantity_current))
+				.getText().toString();
+		
+		if(!chekInputData(name, type, price)) {
 			return;
 		}
 
-		String price = ((EditText) findViewById(R.id.product_price_preview))
-				.getText().toString();
+		byte[] imageInByte = getImageInByteArray();
 
+		if(!saveItemToSQLite(name, price, type, quantity, imageInByte, longitude, latitude)) {
+			printMessage("Error while saving in SQLite!");
+			return;
+		}
+		
+		if(!saveItemToTelerikBackend(name, price, type, quantity, imageInByte, longitude, latitude)) {
+			printMessage("Error while saving in Telerik Backend Services!");
+			return;
+		}
+		
+		printMessage("Succesfully saved.");
+	}
+	
+	private byte[] getImageInByteArray() {
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+		byte imageInByte[] = stream.toByteArray();
+		
+		return imageInByte;
+	}
+	
+	private Boolean saveItemToSQLite(String name, String price, String type, String quantity, byte[] imageInByte, String longitude, String latitude) {
+		SQLiteDataSource datasource = new SQLiteDataSource(this);
+		datasource.open();
+		long result = datasource.createProduct(name, price, type, quantity, imageInByte, longitude, latitude);
+		datasource.close();
+		
+		return result != -1;
+	}
+	
+	private Boolean saveItemToTelerikBackend(String name, String price, String type, String quantity, byte[] imageInByte, String longitude, String latitude) {
+		TelerikDataSource dataSource = new TelerikDataSource();		
+		Boolean result = dataSource.saveProduct(name, price, type, quantity, imageInByte, longitude, latitude);
+		
+		return result;
+	}
+	
+	private Boolean chekInputData(String name, String type, String price) {
+		if (imageBitmap == null) {
+			printMessage("You must add a photo");
+			return false;
+		}
+		
+		if (name.equals("")) {
+			printMessage("You must add a name");
+			return false;
+		}
+		
+		if (type.equals("")) {
+			printMessage("You must add a type");
+			return false;
+		}
+		
 		if (price.equals("")) {
 			printMessage("You must add a price");
-			return;
+			return false;
 		}
 		
 		if(longitude.equals("") || latitude.equals(""))
 		{
 			printMessage("Something wrong with retrieving location");
-			return;
+			return false;
 		}
-
-		String quantity = ((TextView) findViewById(R.id.product_quantity_current))
-				.getText().toString();
-
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-		byte imageInByte[] = stream.toByteArray();
-
-		ProductDataSource datasource = new ProductDataSource(this);
-		datasource.open();
-		datasource.createProduct(name, price, type, quantity, imageInByte, longitude, latitude);
-		datasource.close();
 		
-		printMessage("Succesfully saved.");
+		return true;
 	}
 
 	private void printMessage(String message) {
@@ -147,6 +185,7 @@ public class AddItemActivity extends ActionBarActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.add_item, menu);
+		
 		return true;
 	}
 
@@ -156,6 +195,7 @@ public class AddItemActivity extends ActionBarActivity implements
 		if (id == R.id.action_settings) {
 			return true;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 
@@ -180,7 +220,6 @@ public class AddItemActivity extends ActionBarActivity implements
 		public void onLocationChanged(Location location) {
 			longitude = String.valueOf(location.getLongitude());
 			latitude = String.valueOf(location.getLatitude());
-
 		}
 
 		@Override

@@ -1,9 +1,8 @@
 package com.example.pigletstorage;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.example.SQLite.models.Product;
+import com.example.models.Product;
 
 import android.app.Activity;
 import android.content.Context;
