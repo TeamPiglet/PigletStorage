@@ -8,42 +8,43 @@
     android:background="@layout/background"
     tools:context="com.example.pigletstorage.MainActivity" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:src="@drawable/piglet" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/imageView1"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginTop="36dp"
-        android:onClick="addProduct"
-    	android:textColor="@color/white"
-        android:text="Add Product" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
-        android:layout_alignLeft="@+id/imageView1"
-        android:onClick="listProducts"
-    	android:textColor="@color/white"
-        android:text="View Products" />
-
     <Button
         android:id="@+id/test_sqlite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="testSQLite"
         android:text="Test SQLite" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="51dp"
+        android:layout_marginLeft="14dp"
+        android:onClick="listProducts"
+        android:text="View Products"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:onClick="addProduct"
+        android:text="Add Product"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="56dp"
+        android:src="@drawable/piglet" />
     
 </RelativeLayout>

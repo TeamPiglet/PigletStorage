@@ -17,5 +17,6 @@
     <string name="title_activity_list">List</string>
     <string name="save_product_label">Save product</string>
     <string name="title_activity_test_sqlite">TestSQLiteActivity</string>
+    <string name="title_activity_product_details">ProductDetailsActivity</string>
 
 </resources>
