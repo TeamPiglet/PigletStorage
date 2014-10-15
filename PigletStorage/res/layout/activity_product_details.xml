@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -9,12 +10,14 @@
     android:background="@layout/background"
     tools:context="com.example.pigletstorage.ProductDetailsActivity" >
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imageDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent" 
         android:src="@drawable/ic_launcher" />
 
     <TextView
@@ -28,16 +31,6 @@
         android:text="Name:"
         android:textColor="@color/white"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/nameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView1"
-        android:layout_toRightOf="@+id/imageDetail"
-        android:textColor="@color/white"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="nameValue" />
 
     <TextView
         android:id="@+id/textView3"
@@ -104,4 +97,22 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/white" />
 
+    <TextView
+        android:id="@+id/nameValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_marginLeft="69dp"
+        android:layout_toRightOf="@+id/textView1"
+        android:text="nameValue"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white" />
+	
+	<com.example.pigletstorage.TouchImageView
+        android:id="@+id/expanded_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible"
+        android:contentDescription="ExpandedImage" />
 </RelativeLayout>
