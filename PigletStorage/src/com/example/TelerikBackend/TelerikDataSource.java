@@ -1,12 +1,9 @@
 package com.example.TelerikBackend;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.models.Product;
 import com.telerik.everlive.sdk.core.EverliveApp;
-import com.telerik.everlive.sdk.core.facades.read.GetByFilterFacade;
-import com.telerik.everlive.sdk.core.result.RequestResult;
 
 public class TelerikDataSource {
 	static final String API_KEY = "15RD0gvz65GYsNwk";
