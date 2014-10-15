@@ -47,6 +47,11 @@
             android:name=".ProductDetailsActivity"
             android:label="@string/title_activity_product_details" >
         </activity>
+        <activity
+            android:name=".ProductsFromServerActivity"
+            android:label="@string/title_activity_products_from_server" >
+        </activity>
+        <service android:name=".FetchFromDBService" />
     </application>
 
 </manifest>

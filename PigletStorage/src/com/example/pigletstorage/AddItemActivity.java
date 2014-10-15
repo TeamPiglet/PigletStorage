@@ -189,7 +189,6 @@ public class AddItemActivity extends ActionBarActivity implements
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode != RESULT_OK) {
-			printMessage("Something wrong with picking photo");
 			return;
 		}
 		imageBitmap = null;
