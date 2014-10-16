@@ -2,7 +2,10 @@ package com.example.pigletstorage;
 
 import java.util.ArrayList;
 
+import com.example.models.Product;
+
 import android.support.v7.app.ActionBarActivity;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -12,32 +15,41 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ProductsFromServerActivity extends ActionBarActivity {
+	Dialog dialog;
 
 	ListView list;
 	ArrayList<String> stringList;
 	ArrayAdapter<String> adapter;
 	MyReceiver myReceiver;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_products_from_server);
-		stringList = new ArrayList<String>();		
-		adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,stringList);
-		list = (ListView)findViewById(R.id.listProducts);
-		list.setAdapter(adapter);		
-		
+		stringList = new ArrayList<String>();
+		adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, stringList);
+		list = (ListView) findViewById(R.id.listProducts);
+		list.setAdapter(adapter);
+
 		myReceiver = new MyReceiver();
-		
+
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction(FetchFromDBService.MY_ACTION);
 		registerReceiver(myReceiver, intentFilter);
-		
-		Intent intent = new Intent(ProductsFromServerActivity.this, FetchFromDBService.class);
+
+		Intent intent = new Intent(ProductsFromServerActivity.this,
+				FetchFromDBService.class);
 		startService(intent);
+
+		dialog = new Dialog(ProductsFromServerActivity.this);
+		dialog.setContentView(R.layout.waiting_popup);
+		dialog.setTitle("Fetching from server");
+		dialog.show();
 	}
 
 	@Override
@@ -54,27 +66,27 @@ public class ProductsFromServerActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	@Override
 	protected void onStop() {
 		unregisterReceiver(myReceiver);
-		super.onStop();		
+		super.onStop();
 	}
-	
-	private class MyReceiver extends BroadcastReceiver
-	{
+
+	private class MyReceiver extends BroadcastReceiver {
 		@Override
-		public void onReceive(Context arg0, Intent arg1) {			
-			String datapassed = arg1.getStringExtra("DATAPASSED");						
-			if(!stringList.contains(datapassed))
-			{
-				stringList.add(datapassed);				
-				adapter.notifyDataSetChanged();
-				Toast.makeText(
-				        ProductsFromServerActivity.this,
-				        "Successfully receive products!", Toast.LENGTH_LONG)
-				        .show();
-			}		
+		public void onReceive(Context arg0, Intent arg1) {
+			stringList.clear();
+			adapter.notifyDataSetChanged();
+			dialog.dismiss();
+			ArrayList<?> datapassed = arg1
+					.getCharSequenceArrayListExtra("DATAPASSED");
+			ArrayList<String> names = new ArrayList<String>();
+			for (Object product : datapassed) {
+				names.add(((Product) product).getName());
+			}
+			stringList.addAll(names);
+			adapter.notifyDataSetChanged();
 		}
 	}
 }

@@ -96,12 +96,17 @@ public class AddItemActivity extends ActionBarActivity implements
 				.getText().toString();
 		String quantity = ((TextView) findViewById(R.id.product_quantity_current))
 				.getText().toString();
+		byte[] imageInByte = getImageInByteArray();
 
 		if (!chekInputData(name, type, price)) {
 			return;
 		}
-
-		byte[] imageInByte = getImageInByteArray();
+		
+		String networkType = Connection.getNetworkClass(this);
+		if(networkType == null) {
+			printMessage("You are not connected to internet!");
+			return;
+		}
 
 		if (!saveItemToSQLite(name, price, type, quantity, imageInByte,
 				longitude, latitude)) {
@@ -118,7 +123,7 @@ public class AddItemActivity extends ActionBarActivity implements
 		notifications.createAddedNewItemNotification(this, imageBitmap, name,
 				price, type, quantity);
 
-		printMessage("Succesfully saved.");
+		printMessage("Succesfully saved via " + networkType + "!");
 	}
 
 	private byte[] getImageInByteArray() {

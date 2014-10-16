@@ -6,7 +6,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.pigletstorage.ProductsFromServerActivity" >
+    tools:context="com.example.pigletstorage.ProductsFromServerActivity"
+    android:id="@+id/product_from_server" 
+    >
 
     <ListView
         android:id="@+id/listProducts"
