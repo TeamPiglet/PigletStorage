@@ -19,5 +19,6 @@
     <string name="title_activity_test_sqlite">TestSQLiteActivity</string>
     <string name="title_activity_product_details">ProductDetailsActivity</string>
     <string name="title_activity_products_from_server">Products from server</string>
+    <string name="title_activity_map">MapActivity</string>
 
 </resources>

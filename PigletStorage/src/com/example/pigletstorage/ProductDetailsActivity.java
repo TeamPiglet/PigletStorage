@@ -31,6 +31,7 @@ import android.widget.TextView;
 	
 	private Animator mCurrentAnimator;    
     private int mShortAnimationDuration;
+    public Product product;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ import android.widget.TextView;
 		
 		List<Product> values = ListOfProducts.getProducts();
 		
-		Product product = (Product) values.get(position);
+		product = (Product) values.get(position);
 		
 		ab.setTitle(product.getName());
 		
@@ -75,6 +76,13 @@ import android.widget.TextView;
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 	}
 
+	public void showOnMap(View v){		
+		Intent intent = new Intent(this, MapActivity.class);
+		intent.putExtra("latitude", product.getLatitude());
+		intent.putExtra("longtitude", product.getLogitude());
+		startActivity(intent);
+	}
+	
 	private void zoomImageFromThumb(final ImageButton thumbView, Bitmap imageResId) {
         // If there's an animation in progress, cancel it immediately and proceed with this one.
         if (mCurrentAnimator != null) {
