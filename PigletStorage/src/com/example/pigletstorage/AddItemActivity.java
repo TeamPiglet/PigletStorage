@@ -96,11 +96,12 @@ public class AddItemActivity extends ActionBarActivity implements
 				.getText().toString();
 		String quantity = ((TextView) findViewById(R.id.product_quantity_current))
 				.getText().toString();
-		byte[] imageInByte = getImageInByteArray();
+		
 
 		if (!chekInputData(name, type, price)) {
 			return;
 		}
+		byte[] imageInByte = getImageInByteArray();
 		
 		String networkType = Connection.getNetworkClass(this);
 		if(networkType == null) {

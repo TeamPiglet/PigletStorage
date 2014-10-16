@@ -40,7 +40,7 @@ public class FetchFromDBService extends Service
 			super.run();
 			while (true) {
 				try {
-					//Thread.sleep(100);
+					
 					Intent intent = new Intent();
 					intent.setAction(MY_ACTION);
 					
@@ -49,14 +49,10 @@ public class FetchFromDBService extends Service
 					
 					if (allItems.getSuccess()) {
 						ArrayList products = (ArrayList) allItems.getValue();
-						intent.putExtra("DATAPASSED", products);
-//						for (Object item : products) {
-//							Product product = (Product) item;
-//							intent.putExtra("DATAPASSED", product.getName());
-//						}
-					}
-					
+						intent.putExtra("data", products);
+					}					
 					sendBroadcast(intent);
+					Thread.sleep(1000);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

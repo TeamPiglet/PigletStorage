@@ -80,7 +80,7 @@ public class ProductsFromServerActivity extends ActionBarActivity {
 			adapter.notifyDataSetChanged();
 			dialog.dismiss();
 			ArrayList<?> datapassed = arg1
-					.getCharSequenceArrayListExtra("DATAPASSED");
+					.getCharSequenceArrayListExtra("data");
 			ArrayList<String> names = new ArrayList<String>();
 			for (Object product : datapassed) {
 				names.add(((Product) product).getName());
