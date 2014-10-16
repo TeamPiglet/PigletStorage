@@ -37,13 +37,12 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
                  data=d;
                  res = resLocal;
               
-                 /***********  Layout inflator to call external xml layout () ***********/
+                 /***********  Layout inflater to call external xml layout () ***********/
                  inflater = ( LayoutInflater )activity.
                                               getSystemService(Context.LAYOUT_INFLATER_SERVICE);
               
          }
       
-         /******** What is the size of Passed Arraylist Size ************/
          public int getCount() {
               
              if(data.size()<=0)
@@ -78,9 +77,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
                   
                  /****** Inflate tabitem.xml file for each row ( Defined below ) *******/
                  vi = inflater.inflate(R.layout.list_row_layout, parent,false);
-                  
-                 /****** View Holder Object to contain tabitem.xml file elements ******/
- 
+                   
                  holder = new ViewHolder();
                  holder.text = (TextView) vi.findViewById(R.id.firstLine);
                  holder.text1 = (TextView)vi.findViewById(R.id.secondLine);
@@ -100,7 +97,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
              }
              else
              {
-                 /***** Get each Model object from Arraylist ********/
+                 /***** Get each Product object from List ********/
                  tempValues=null;
                  tempValues = ( Product ) data.get( position );
                   
@@ -112,7 +109,7 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
                   holder.text1.setText("Price: " + tempValues.getPrice() );
                   holder.image.setImageBitmap(imageBitmap);
                    
-                  /******** Set Item Click Listner for LayoutInflater for each row *******/
+                  /******** Set Item Click Listener for LayoutInflater for each row *******/
  
                   vi.setOnClickListener(new OnItemClickListener( position ));
              }
@@ -136,11 +133,11 @@ public class CustomAdapter extends BaseAdapter   implements OnClickListener {
              public void onClick(View arg0) {
  
         
-               ListOfProducts sct = (ListOfProducts)activity;
+        	 ListOfProducts sct = (ListOfProducts)activity;
  
               /****  Call  onItemClick Method inside ListOfProducts Class ( See Below )****/
  
-                 sct.onItemClick(mPosition);
+        	 sct.onItemClick(mPosition);
              }               
          }   
      }

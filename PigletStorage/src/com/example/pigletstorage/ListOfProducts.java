@@ -2,19 +2,17 @@ package com.example.pigletstorage;
 
 import java.util.List;
 
-import com.example.SQLite.SQLiteDataSource;
-import com.example.models.Product;
-
-import android.support.v7.app.ActionBarActivity;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.SQLite.SQLiteDataSource;
+import com.example.models.Product;
 
 @SuppressLint("NewApi") 
 public class ListOfProducts extends ActionBarActivity {
@@ -23,8 +21,8 @@ public class ListOfProducts extends ActionBarActivity {
 	CustomAdapter adapter;
 	public ListOfProducts CustomListView = null;
 	private SQLiteDataSource datasource;
-	public List<Product> values;
-
+	public static List<Product> values;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,33 +38,28 @@ public class ListOfProducts extends ActionBarActivity {
 		values = datasource.getAllProducts();
 
 		Resources res = getResources();
-		list = (ListView) findViewById(R.id.listOfAllProducts); // List defined in XML (
-														// See Below )
+		list = (ListView) findViewById(R.id.listOfAllProducts); // List defined in XML
 
 		/**************** Create Custom Adapter *********/
 		adapter = new CustomAdapter(CustomListView, values, res);
 		list.setAdapter(adapter);
-
-	}
+    }	
 
 	/****** Function to set data in ArrayList *************/
 
 	public void onItemClick(int mPosition) {
-		Product tempValues = (Product) values.get(mPosition);
+		//Product tempValues = (Product) values.get(mPosition);
 
-		Intent intent = new Intent(getBaseContext(),
-				ProductDetailsActivity.class);
-		intent.putExtra("product", tempValues);
+		Intent intent = new Intent(this, ProductDetailsActivity.class);
+		intent.putExtra("mPosition", mPosition);
 		startActivity(intent);
 	
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.list, menu);
-		return true;
+	public static List<Product> getProducts(){
+		return values;
 	}
+	
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {

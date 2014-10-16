@@ -1,5 +1,8 @@
 package com.example.pigletstorage;
 
+import java.util.List;
+
+import com.example.SQLite.SQLiteDataSource;
 import com.example.models.Product;
 
 import android.support.v4.app.FragmentActivity;
@@ -10,6 +13,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
@@ -28,16 +32,21 @@ import android.widget.TextView;
 	private Animator mCurrentAnimator;    
     private int mShortAnimationDuration;
     
-    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_product_details);
 		
 		ActionBar ab = getActionBar();
-	    
 		
-		Product product = (Product) getIntent().getExtras().getParcelable("product");
+		//Product product = (Product) getIntent().getExtras().getParcelable("product");
+				
+		Intent intent = getIntent();
+		int position =  (int) intent.getIntExtra("mPosition", 0);
+		
+		List<Product> values = ListOfProducts.getProducts();
+		
+		Product product = (Product) values.get(position);
 		
 		ab.setTitle(product.getName());
 		
